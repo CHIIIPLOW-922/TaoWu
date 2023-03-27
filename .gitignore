@@ -105,7 +105,11 @@ fabric.properties
 *.iml
 .idea
 /tmp
-
+.mvn
+*/.mvn
+*/.gitignore
+*/mvnw.cmd
+*/mvnw
 
 /script
 /span
