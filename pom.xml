@@ -18,6 +18,9 @@
         <java.version>1.8</java.version>
     </properties>
     <modules>
+        <module>taowu-order</module>
+        <module>taowu-product</module>
+        <module>taowu-common</module>
         <module>taowu-user</module>
     </modules>
 
