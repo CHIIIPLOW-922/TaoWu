@@ -15,23 +15,29 @@
     <name>taowu</name>
     <description>淘物商城</description>
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mysql.version>8.0.15</mysql.version>
         <java.version>1.8</java.version>
     </properties>
     <modules>
+        <!--    订单模块    -->
         <module>taowu-order</module>
+        <!--    商品模块    -->
         <module>taowu-product</module>
+        <!--    公共模块    -->
         <module>taowu-common</module>
+        <!--    用户模块    -->
         <module>taowu-user</module>
     </modules>
 
     <dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
-        </dependency>
-    </dependencies>
+        <dependencies>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
     <build>
         <plugins>
