@@ -2,7 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<parent>
 		<groupId>com.joji</groupId>
 		<artifactId>taowu-be</artifactId>
@@ -10,10 +9,10 @@
 	</parent>
 
 	<groupId>com.joji</groupId>
-	<artifactId>taowu-user</artifactId>
+	<artifactId>taowu-static</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>taowu-user</name>
-	<description>淘物商城用户模块</description>
+	<name>taowu-static</name>
+	<description>商城静态文件存储管理模块</description>
 
 	<dependencies>
 		<dependency>
@@ -21,27 +20,14 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- nacos客户端依赖包 -->
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.joji</groupId>
-			<artifactId>taowu-common-feign</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
 		</dependency>
 
 	</dependencies>
 
 
 
-
 </project>
-
