@@ -33,7 +33,7 @@
 
 		<dependency>
 			<groupId>com.joji</groupId>
-			<artifactId>taowu-common-feign</artifactId>
+			<artifactId>taowu-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

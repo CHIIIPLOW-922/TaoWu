@@ -37,7 +37,7 @@
         <!--    商品服务模块    -->
         <module>taowu-product</module>
         <!--    公共调用模块    -->
-        <module>taowu-common-feign</module>
+        <module>taowu-common</module>
         <!--    商城用户模块    -->
         <module>taowu-user</module>
         <!--    后台管理模块    -->
