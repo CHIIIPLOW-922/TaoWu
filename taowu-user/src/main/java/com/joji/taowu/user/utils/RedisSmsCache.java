@@ -6,6 +6,10 @@ import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 
+
+/**
+ * Redis短信缓存
+ * */
 @Component
 public class RedisSmsCache {
     private static final String SMS_CACHE_PREFIX = "sms:";

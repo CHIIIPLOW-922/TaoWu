@@ -12,6 +12,10 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.Random;
 
+/**
+ * 阿里短信发送工具类
+ *
+ * */
 @Slf4j
 @Component
 public class SendSms {
@@ -30,12 +34,14 @@ public class SendSms {
 
     /**
      * 短信模版编码
+     * SMS_276220414
      */
     private static final String templateCode = "SMS_275790104";
 
     /**
      * 签名名称
      */
+
     private static final String signName = "淘物商城";
 
     /**

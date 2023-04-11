@@ -7,9 +7,12 @@ import com.joji.taowu.common.utils.R;
 
 import java.util.List;
 
+/**
+ * 商城用户业务层
+ * */
 public interface UserService {
 
-    List<User> list() throws ClientException;
+    List<User> list();
 
     /**
      * 检查账号是否可用
@@ -21,6 +24,7 @@ public interface UserService {
     /**
      * 进行账号注册
      * @param user 参数没有校验
+     * @param verifyCode
      * @return
      */
     R register(User user,String verifyCode);
@@ -28,6 +32,8 @@ public interface UserService {
 
     /**
      * 短信发送
+     * @param phoneNumber
+     * @return
      * */
     R sendPhoneSms(String phoneNumber);
 
@@ -57,5 +63,5 @@ public interface UserService {
      * @param user
      * @return
      */
-    Object update(User user);
+    Object update(User user,String verifyCode);
 }
