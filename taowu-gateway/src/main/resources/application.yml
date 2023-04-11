@@ -3,8 +3,8 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: user-service
-          uri: lb://user-service
+        - id: taowu-user
+          uri: lb://taowu-user
           predicates:
             - Path=/user/**  # 访问user路径转发用户服务
         - id: product-service # 此名称随意定义

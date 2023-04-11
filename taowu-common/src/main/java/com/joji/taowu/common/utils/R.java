@@ -18,11 +18,11 @@ public class R  implements Serializable {
     /**
      * 通用成功状态码
      */
-    public static final String SUCCESS_CODE = "001";
+    public static final String SUCCESS_CODE = "922";
     /**
      * 失败状态码
      */
-    public static final String FAIL_CODE = "004";
+    public static final String FAIL_CODE = "229";
     /**
      * 未登录
      */
