@@ -9,6 +9,10 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+
+/**
+ * 淘物商城用户实体
+ * */
 @Data
 @TableName("user")
 public class User implements Serializable {
