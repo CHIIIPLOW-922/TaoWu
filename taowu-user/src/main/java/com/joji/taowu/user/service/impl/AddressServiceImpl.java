@@ -27,7 +27,7 @@ public class AddressServiceImpl implements AddressService {
 
     /**
      * 地址查询服务
-     * */
+     */
     @Override
     public R list(Integer userId) {
         //用户校验
@@ -45,7 +45,7 @@ public class AddressServiceImpl implements AddressService {
 
     /**
      * 地址保存服务
-     * */
+     */
     @Override
     public R save(AddressParam addressParam) {
         Address address = addressParam.getAddress();
@@ -66,7 +66,7 @@ public class AddressServiceImpl implements AddressService {
 
     /**
      * 地址删除服务
-     * */
+     */
     @Override
     public R remove(Integer id) {
         if (id == null) {

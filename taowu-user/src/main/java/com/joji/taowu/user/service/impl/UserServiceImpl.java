@@ -156,7 +156,6 @@ public class UserServiceImpl implements UserService {
         User loginResult = userMapper.selectOne(queryWrapper);
 
         if (loginResult == null) {
-            log.info("淘物商城用户登录业务结束,结果:{}", loginResult);
             return R.fail("账号或密码错误，登录失败!");
         }
         //防止将加盐处理后密码返回给前端

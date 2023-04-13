@@ -36,7 +36,7 @@ public class SendSms {
      * 短信模版编码
      * SMS_276220414
      */
-    private static final String templateCode = "SMS_275790104";
+    private static final String templateCode = "SMS_276220414";
 
     /**
      * 签名名称
@@ -60,13 +60,6 @@ public class SendSms {
      */
     public SendSmsResponse sendSms(String phoneNumber) throws ClientException {
         String verifyNumber = verifyNumberGenerator();
-
-        try {
-            redisSmsCache.put(phoneNumber,verifyNumber);
-        }catch (Exception e){
-            log.info("短信缓存失败");
-            e.printStackTrace();
-        }
         DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
         IAcsClient client = new DefaultAcsClient(profile);
         SendSmsRequest request = new SendSmsRequest();
@@ -76,6 +69,12 @@ public class SendSms {
         String templateParam = "{\"code\":\"" + verifyNumber + "\"}";
         request.setTemplateParam(templateParam);
         SendSmsResponse response = client.getAcsResponse(request);
+        try {
+            redisSmsCache.put(phoneNumber,verifyNumber);
+        }catch (Exception e){
+            log.info("短信缓存失败");
+            e.printStackTrace();
+        }
         return response;
     }
 }

@@ -1,5 +1,5 @@
 server:
-  port: 8000 # 前端默认访问端口号为3000
+  port: 8000 # 前端默认访问端口号为8000
   servlet:
     context-path: / # 前端默认访问的根路径
 spring:
