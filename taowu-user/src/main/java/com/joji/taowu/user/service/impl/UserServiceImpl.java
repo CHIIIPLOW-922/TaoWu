@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService {
             return R.ok("用户注册成功！");
         }
 
-        return R.fail("该账号已存在，请重新注册");
+        return R.fail("注册失败，请重新注册");
     }
 
     /**
