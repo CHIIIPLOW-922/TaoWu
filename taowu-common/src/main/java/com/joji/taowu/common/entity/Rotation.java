@@ -7,7 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.io.Serializable;
-
+/**
+ * 轮播图实体类
+ * */
 @Data
 @TableName("rotation")
 public class Rotation  implements Serializable {

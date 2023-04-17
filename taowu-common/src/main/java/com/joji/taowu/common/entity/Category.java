@@ -7,7 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.io.Serializable;
-
+/**
+ * 商品分类实体类
+ * */
 @Data
 @TableName("category")
 public class Category implements Serializable {

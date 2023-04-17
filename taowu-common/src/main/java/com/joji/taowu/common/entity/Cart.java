@@ -6,7 +6,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
-
+/**
+ * 购物车实体类
+ * */
 @TableName("cart")
 @Data
 public class Cart implements Serializable {
