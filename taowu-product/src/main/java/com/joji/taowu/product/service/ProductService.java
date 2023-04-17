@@ -2,6 +2,7 @@ package com.joji.taowu.product.service;
 
 
 import com.joji.taowu.common.entity.Product;
+import com.joji.taowu.common.param.*;
 import com.joji.taowu.common.utils.R;
 
 import java.util.List;
@@ -20,10 +21,10 @@ public interface ProductService {
 
     /**
      * 热门商品查询,最多查询7条
-     * @param productParamsString
+     * @param productCategoryParam
      * @return
      */
-    Object hots(ProductParamsString productParamsString);
+    Object hots(ProductCategoryParam productCategoryParam);
 
     /**
      * 查询类别数据集合!
@@ -34,17 +35,17 @@ public interface ProductService {
 
     /**
      * 类别商品查询 前端传递类别集合
-     * @param productParamInteger
+     * @param productParam
      * @return
      */
-    Object byCategory(ProductParamInteger productParamInteger);
+    Object byCategory(ProductParam productParam);
 
     /**
      * 全部商品查询,可以进行类别集合数据查询业务复用
-     * @param productParamInteger
+     * @param productParam
      * @return
      */
-    Object all(ProductParamInteger productParamInteger);
+    Object all(ProductParam productParam);
 
     /**
      * 查询商品详情
@@ -68,17 +69,17 @@ public interface ProductService {
 
     /**
      * 关键字商品搜索
-     * @param productParamsSearch
+     * @param productSearchParam
      * @return
      */
-    Object search(ProductParamsSearch productParamsSearch);
+    Object search(ProductSearchParam productSearchParam);
 
     /**
      * 查询商品集合
-     * @param  productIdsParam
+     * @param  productListParam
      * @return
      */
-    List<Product> ids(ProductIdsParam productIdsParam);
+    List<Product> ids(ProductListParam productListParam);
 
     /**
      * 修改商品库存
@@ -95,10 +96,10 @@ public interface ProductService {
 
     /**
      * 保存商品信息
-     * @param productSaveParam
+     * @param productPictureParam
      * @return
      */
-    R save(ProductSaveParam productSaveParam);
+    R save(ProductPictureParam productPictureParam);
 
     /**
      * 商品数据进行更新
