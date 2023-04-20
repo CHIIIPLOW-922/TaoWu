@@ -11,3 +11,35 @@ spring:
           uri: lb://taowu-product #使用负载均衡,调用服务名,这是服务名
           predicates:
             - Path=/product/** # 访问product相关,转发到product服务
+        - id: taowu-admin
+          uri: lb://taowu-admin #使用负载均衡,调用服务名,这是服务名
+          predicates:
+            - Path=/admin/**
+        - id: taowu-category
+          uri: lb://taowu-category
+          predicates:
+            - Path=/category/**
+        - id: taowu-cart
+          uri: lb://taowu-cart
+          predicates:
+            - Path=/cart/**
+        - id: taowu-order
+          uri: lb://taowu-order
+          predicates:
+            - Path=/order/**
+        - id: taowu-wishlist
+          uri: lb://taowu-wishlist
+          predicates:
+            - Path=/wishlist/**
+        - id: taowu-rotation
+          uri: lb://taowu-rotaion
+          predicates:
+            - Path=/rotation/**
+        - id: taowu-static
+          uri: lb://taowu-static
+          predicates:
+            - Path=/public/**
+        - id: taowu-search
+          uri: lb://taowu-search
+          predicates:
+            - Path=/search/**
