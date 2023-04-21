@@ -10,8 +10,7 @@ import java.util.List;
 
 /**
  * 淘物商城商品业务实现层
- *
- * */
+ */
 public class ProductServiceImpl implements ProductService {
     @Override
     public Object promo(String categoryName) {
