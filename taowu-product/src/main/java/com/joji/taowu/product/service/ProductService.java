@@ -1,6 +1,7 @@
 package com.joji.taowu.product.service;
 
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.joji.taowu.common.entity.Product;
 import com.joji.taowu.common.param.*;
 import com.joji.taowu.common.utils.R;
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  * 淘物商城商品业务层
  * */
-public interface ProductService {
+public interface ProductService extends IService<Product> {
 
     /**
      * 类别名称,查询商品集合,最多查询7条
