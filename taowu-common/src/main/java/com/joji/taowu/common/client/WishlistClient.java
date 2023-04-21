@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(value = "taowu-wishlist")
 public interface WishlistClient {
 
-    @PostMapping("/collect/remove/bypid")
+    @PostMapping("/wishlist/remove/bypid")
     R removeByPID(@RequestBody Integer productId);
 }
