@@ -37,14 +37,14 @@ public class RotationServiceImpl implements RotationService {
         int limit = 4 ; //至多查询四条
         //查询数据库
         IPage<Rotation> iPage = new Page<>(1,limit);
-        QueryWrapper<Rotation> carouselQueryWrapper = new QueryWrapper<>();
-        carouselQueryWrapper.orderByDesc("priority");
-        IPage<Rotation> page = rotationMapper.selectPage(iPage, carouselQueryWrapper);
+        QueryWrapper<Rotation> rotationQueryWrapper = new QueryWrapper<>();
+        rotationQueryWrapper.orderByDesc("priority");
+        IPage<Rotation> page = rotationMapper.selectPage(iPage, rotationQueryWrapper);
 
-        List<Rotation> carouselList = page.getRecords();
+        List<Rotation> rotationList = page.getRecords();
         long total = page.getTotal();
         System.out.println("total = " + total);
 
-        return R.ok(carouselList);
+        return R.ok(rotationList);
     }
 }

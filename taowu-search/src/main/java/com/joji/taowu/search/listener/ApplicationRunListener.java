@@ -21,7 +21,9 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
-
+/**
+ * 应用启动监听器
+ * */
 @Slf4j
 @Component
 public class ApplicationRunListener implements ApplicationRunner {

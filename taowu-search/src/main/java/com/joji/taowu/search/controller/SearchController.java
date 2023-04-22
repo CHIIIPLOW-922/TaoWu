@@ -21,9 +21,9 @@ public class SearchController {
     private SearchService searchService;
 
     @PostMapping("product")
-    public R productList(@RequestBody ProductSearchParam productParamsSearch) throws JsonProcessingException {
+    public R productList(@RequestBody ProductSearchParam productSearchParam) throws JsonProcessingException {
 
 
-        return searchService.search(productParamsSearch);
+        return searchService.search(productSearchParam);
     }
 }
