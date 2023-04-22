@@ -196,7 +196,6 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
      * @return
      */
     @Override
-    @Cacheable(value = "product", key = "#productID")
     public Object detail(Integer productID) {
         Product product = productMapper.selectById(productID);
 
