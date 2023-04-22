@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * */
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/admin/category")
 public class CategoryController {
 
     @Resource

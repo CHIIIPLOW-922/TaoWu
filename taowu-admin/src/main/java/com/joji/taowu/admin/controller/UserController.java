@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * 后台管理用户管理控制器
  * */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 public class UserController {
 
     @Resource
