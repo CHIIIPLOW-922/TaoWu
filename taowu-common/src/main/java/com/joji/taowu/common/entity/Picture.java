@@ -17,6 +17,7 @@ public class Picture implements Serializable {
     public static final Long serialVersionUID = 1L;
 
     @TableId(type= IdType.AUTO)
+    @JsonProperty("picture_id")
     private Integer pictureId;
     @JsonProperty("product_id")
     private Integer productId;

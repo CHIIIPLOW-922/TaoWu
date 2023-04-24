@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joji.taowu.product.mapper.PictureMapper">
+
+    <select id="list" resultType="com.joji.taowu.common.entity.Picture">
+        SELECT picture_id,product_id,product_picture,intro FROM picture GROUP BY picture_id LIMIT #{offset},#{number}
+    </select>
+
+</mapper>

@@ -1,7 +1,9 @@
 package com.joji.taowu.common.client;
 
 
+import com.joji.taowu.common.entity.Picture;
 import com.joji.taowu.common.entity.Product;
+import com.joji.taowu.common.param.PictureParam;
 import com.joji.taowu.common.param.ProductListParam;
 import com.joji.taowu.common.param.ProductPictureParam;
 import com.joji.taowu.common.param.ProductSearchParam;
@@ -10,6 +12,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -54,4 +57,14 @@ public interface ProductClient {
 
     @PostMapping("product/remove")
     R remove(@RequestBody Integer productId);
+
+
+    @PostMapping("picture/list")
+    R listPic(@RequestBody PictureParam pictureParam);
+
+    @PostMapping("picture/add")
+    R addPic(@RequestBody Picture picture);
+
+    @PostMapping("picture/remove")
+    R removePic(@RequestParam Integer productId);
 }
