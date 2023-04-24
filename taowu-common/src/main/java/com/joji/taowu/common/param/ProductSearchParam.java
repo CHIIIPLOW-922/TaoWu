@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 public class ProductSearchParam {
     private String search;
-    private int    currentPage = 1;
-    private int    pageSize = 15;
+    private int    currentPage;
+    private int    pageSize;
 
     /**
      * 运算分页起始值

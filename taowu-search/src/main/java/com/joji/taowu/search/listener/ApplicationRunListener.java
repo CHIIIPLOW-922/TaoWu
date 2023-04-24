@@ -15,6 +15,7 @@ import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.reindex.DeleteByQueryRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -28,10 +29,10 @@ import java.util.List;
 @Component
 public class ApplicationRunListener implements ApplicationRunner {
 
-    @Resource
+    @Autowired
     private RestHighLevelClient client;
 
-    @Resource
+    @Autowired
     private ProductClient productClient;
 
     private String createIndex = "{\n" +
