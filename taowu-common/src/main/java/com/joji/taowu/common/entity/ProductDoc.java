@@ -16,7 +16,7 @@ public class ProductDoc extends Product{
         super(product.getProductId(),product.getProductName(),
                 product.getCategoryId(),product.getProductTitle(),
                 product.getProductIntro(),product.getProductPicture(),
-                product.getProductPrice(),product.getProductSellPrice(),
+                product.getProductPrice(),product.getProductSellprice(),
                 product.getProductNum(),product.getProductSales());
         this.all = product.getProductName()+product.getProductTitle()+product.getProductIntro();
     }

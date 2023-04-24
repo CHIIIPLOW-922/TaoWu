@@ -38,7 +38,7 @@ public class Product implements Serializable {
     @JsonProperty("product_price")
     private BigDecimal productPrice;
     @JsonProperty("product_sellprice")
-    private BigDecimal productSellPrice;
+    private BigDecimal productSellprice;
     @JsonProperty("product_num")
     private Integer productNum;
     @JsonProperty("product_sales")
