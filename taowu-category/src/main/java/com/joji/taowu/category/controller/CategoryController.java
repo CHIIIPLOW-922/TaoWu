@@ -55,14 +55,14 @@ public class CategoryController {
 
 
     @PostMapping("admin/remove")
-    public R remove(@RequestBody Integer categoryId){
+    public R remove(@RequestBody Category category){
 
-        return categoryService.remove(categoryId);
+        return categoryService.remove(category);
     }
 
 
     @PostMapping("admin/save")
-    public R remove(@RequestBody Category category){
+    public R save(@RequestBody Category category){
 
         return categoryService.save(category);
     }

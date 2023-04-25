@@ -3,10 +3,7 @@ package com.joji.taowu.admin.controller;
 import com.joji.taowu.admin.service.CategoryService;
 import com.joji.taowu.common.entity.Category;
 import com.joji.taowu.common.param.PageParam;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -29,21 +26,21 @@ public class CategoryController {
     }
 
     @PostMapping("/update")
-    public Object update(Category category){
+    public Object update(@RequestBody Category category){
 
         return categoryService.update(category);
     }
 
 
     @PostMapping("/remove")
-    public Object remove(Integer categoryId){
+    public Object remove(@RequestBody Category category){
 
-        return categoryService.remove(categoryId);
+        return categoryService.remove(category);
     }
 
 
     @PostMapping("/save")
-    public Object save(Category category){
+    public Object save(@RequestBody Category category){
 
         return categoryService.save(category);
     }

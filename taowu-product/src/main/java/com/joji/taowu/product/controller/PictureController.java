@@ -30,7 +30,7 @@ public class PictureController {
     }
 
     @PostMapping("remove")
-    public R remove(@RequestParam Integer pictureId){
-        return pictureService.remove(pictureId);
+    public R remove(@RequestBody Picture picture){
+        return pictureService.remove(picture);
     }
 }

@@ -10,5 +10,5 @@ public interface PictureService {
 
     Object addPic(Picture picture);
 
-    Object removePic(Integer productId);
+    Object removePic(Picture picture);
 }

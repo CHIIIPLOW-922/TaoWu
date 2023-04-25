@@ -50,11 +50,11 @@ public class CategoryServiceImpl implements CategoryService {
     @Caching(
             evict = {
                     @CacheEvict(value="list.category",allEntries = true),
-                    @CacheEvict(value = "category",key = "#categoryId")
+                    @CacheEvict(value = "category",key = "#category.categoryId")
             }
     )
-    public Object remove(Integer categoryId) {
-        R r = categoryClient.remove(categoryId);
+    public Object remove(Category category) {
+        R r = categoryClient.remove(category);
         log.info("CategoryServiceImpl.remove业务结束，结果:{}",r);
         return r;
     }

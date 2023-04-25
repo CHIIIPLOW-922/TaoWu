@@ -20,7 +20,6 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("list")
-    @ResponseBody
     public Object list(PageParam pageParam){
 
         return userService.listPage(pageParam);
@@ -28,19 +27,17 @@ public class UserController {
 
 
     @PostMapping("remove")
-    @ResponseBody
-    public Object remove(Integer userId){
-
+    public Object remove(@RequestBody User user){
+        Integer userId = user.getUserId();
         if (userId == null){
             return R.fail("删除失败!");
         }
-        return userService.remove(userId);
+        return userService.remove(user);
     }
 
 
     @PostMapping("update")
-    @ResponseBody
-    public Object update(User user){
+    public Object update(@RequestBody User user){
 
         return userService.update(user);
     }
@@ -48,7 +45,7 @@ public class UserController {
 
     @PostMapping("save")
     @ResponseBody
-    public Object save(User user){
+    public Object save(@RequestBody User user){
 
         return userService.save(user);
     }

@@ -36,7 +36,7 @@ public interface CategoryClient {
     R update(@RequestBody  Category category);
 
     @PostMapping("/category/admin/remove")
-    R remove(@RequestBody Integer categoryId);
+    R remove(@RequestBody Category category);
 
     @PostMapping("/category/admin/save")
     R save(@RequestBody Category category);

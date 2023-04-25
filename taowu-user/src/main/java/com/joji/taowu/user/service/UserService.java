@@ -53,10 +53,10 @@ public interface UserService {
 
     /**
      * 删除用户数据
-     * @param userId
+     * @param user
      * @return
      */
-    Object remove(Integer userId);
+    Object remove(User user);
 
     /**
      * 修改用户密码

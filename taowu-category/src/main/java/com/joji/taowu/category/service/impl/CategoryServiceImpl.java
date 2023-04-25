@@ -94,14 +94,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public R page(PageParam pageParam) {
-        //分页参数
-        IPage<Category> page = new Page<>(pageParam.getCurrentPage()
-                ,pageParam.getPageSize());
-        //查询参数获取
-        page = categoryMapper.selectPage(page, null);
 
-        List<Category> records = page.getRecords();
-        long total = page.getTotal();
+        List<Category> records = categoryMapper.list(((pageParam.getCurrentPage()-1)* pageParam.getPageSize()), pageParam.getPageSize());
+        long total = categoryMapper.selectCount(null);
 
         R r = R.ok("查询类别数据成功!", records, total);
 
@@ -122,7 +117,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public R remove(Integer categoryId) {
+    public R remove(Category category) {
+        Integer categoryId = category.getCategoryId();
         //调用商品服务,查询类别对应的商品数量
         long count = productClient.count(categoryId);
         //判断数量,如果有引用,不能删除,反之可以删除

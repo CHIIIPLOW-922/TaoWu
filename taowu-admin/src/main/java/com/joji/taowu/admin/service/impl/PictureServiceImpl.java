@@ -28,7 +28,7 @@ public class PictureServiceImpl implements PictureService{
     }
 
     @Override
-    public Object removePic(Integer productId) {
-        return productClient.removePic(productId);
+    public Object removePic(Picture picture) {
+        return productClient.removePic(picture);
     }
 }

@@ -50,7 +50,7 @@ public interface CategoryService {
      * @param categoryId
      * @return
      */
-    R remove(Integer categoryId);
+    R remove(Category category);
 
     /**
      * 保存类别数据

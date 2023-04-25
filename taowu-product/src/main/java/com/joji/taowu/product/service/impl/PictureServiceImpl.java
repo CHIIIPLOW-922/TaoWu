@@ -41,7 +41,8 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public R remove(Integer pictureId) {
+    public R remove(Picture picture) {
+        Integer pictureId = picture.getPictureId();
         int row = pictureMapper.deleteById(pictureId);
         if (row > 0){
             return R.ok("商品图片删除成功！",row);

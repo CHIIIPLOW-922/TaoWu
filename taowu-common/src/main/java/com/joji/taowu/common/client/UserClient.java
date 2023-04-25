@@ -23,7 +23,7 @@ public interface UserClient {
     R listPage(@RequestBody PageParam pageParam);
 
     @PostMapping("/user/remove")
-    R remove(@RequestBody Integer userId);
+    R remove(@RequestBody User user);
 
     @PostMapping("/user/update")
     R update(@RequestBody User user);

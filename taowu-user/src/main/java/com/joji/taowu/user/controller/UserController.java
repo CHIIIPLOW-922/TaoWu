@@ -78,8 +78,8 @@ public class UserController {
      * 用户删除服务
      */
     @PostMapping("/remove")
-    public Object remove(@RequestBody Integer userId) {
-        return userService.remove(userId);
+    public Object remove(@RequestBody User user) {
+        return userService.remove(user);
     }
 
     /**

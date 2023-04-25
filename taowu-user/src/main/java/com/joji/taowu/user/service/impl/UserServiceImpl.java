@@ -193,7 +193,8 @@ public class UserServiceImpl implements UserService {
      * 用户删除业务
      */
     @Override
-    public Object remove(Integer userId) {
+    public Object remove(User user) {
+        Integer userId = user.getUserId();
         int rows = userMapper.deleteById(userId);
 
         log.info("UserServiceImpl.remove业务结束，结果:{}", rows);

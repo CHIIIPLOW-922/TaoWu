@@ -39,11 +39,11 @@ public class UserServiceImpl implements UserService {
             //删除,清空对应单条id的数据
             evict = {
                     @CacheEvict(value = "list.user",allEntries = true),
-                    @CacheEvict(value = "user",key = "#userId" )
+                    @CacheEvict(value = "user",key = "#user.userId" )
             }
     )
-    public Object remove(Integer userId) {
-        R r = userClient.remove(userId);
+    public Object remove(User user) {
+        R r = userClient.remove(user);
 
         log.info("UserServiceImpl.remove业务结束，结果:{}",r);
         return r;

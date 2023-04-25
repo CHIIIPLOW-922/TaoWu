@@ -66,5 +66,5 @@ public interface ProductClient {
     R addPic(@RequestBody Picture picture);
 
     @PostMapping("picture/remove")
-    R removePic(@RequestParam Integer productId);
+    R removePic(@RequestParam Picture picture);
 }

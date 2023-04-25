@@ -23,10 +23,10 @@ public interface CategoryService {
 
     /**
      * 移除类别数据
-     * @param categoryId
+     * @param category
      * @return
      */
-    Object remove(Integer categoryId);
+    Object remove(Category category);
 
     /**
      * 类别数据保存

@@ -16,5 +16,5 @@ public interface PictureService {
 
     R add(Picture picture);
 
-    R remove(Integer pictureId);
+    R remove(Picture picture);
 }
