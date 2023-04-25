@@ -35,9 +35,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @CacheEvict(value = "list.product", allEntries = true)
-    public Object save(ProductPictureParam productPictureParam) {
+    public Object save(Product product) {
         //保存 商品和商品图片
-        R r = productClient.save(productPictureParam);
+        R r = productClient.save(product);
         log.info("ProductServiceImpl.save业务结束，结果:{}",r);
         return r;
     }
@@ -55,11 +55,11 @@ public class ProductServiceImpl implements ProductService {
     @Caching(
             evict = {
                     @CacheEvict(value = "list.product",allEntries = true),
-                    @CacheEvict(value = "product",key = "#productId")
+                    @CacheEvict(value = "product",key = "#product.productId")
             }
     )
-    public Object remove(Integer productId) {
-        R r = productClient.remove(productId);
+    public Object remove(Product product) {
+        R r = productClient.remove(product);
         log.info("ProductServiceImpl.remove业务结束，结果:{}",r);
         return r;
     }

@@ -24,7 +24,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-cloud.version>Hoxton.SR10</spring-cloud.version>
-        <mysql.version>5.1.47</mysql.version>
         <mybatis.version>2.1.1</mybatis.version>
         <druid.version>1.2.5</druid.version>
         <mybatis-plus.version>3.5.2</mybatis-plus.version>

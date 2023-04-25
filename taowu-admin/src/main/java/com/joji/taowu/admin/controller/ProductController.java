@@ -5,10 +5,7 @@ import com.joji.taowu.admin.service.ProductService;
 import com.joji.taowu.common.entity.Product;
 import com.joji.taowu.common.param.ProductPictureParam;
 import com.joji.taowu.common.param.ProductSearchParam;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -32,12 +29,12 @@ public class ProductController {
 
     /**
      * 商品信息保存
-     * @param productPictureParam
+     * @param product
      * @return
      */
     @PostMapping("save")
-    public Object save(ProductPictureParam productPictureParam){
-        return productService.save(productPictureParam);
+    public Object save(@RequestBody Product product){
+        return productService.save(product);
     }
 
 
@@ -54,9 +51,9 @@ public class ProductController {
 
 
     @PostMapping("remove")
-    public Object remove(Product product){
+    public Object remove(@RequestBody Product product){
 
-        return productService.remove(product.getProductId());
+        return productService.remove(product);
     }
 
 

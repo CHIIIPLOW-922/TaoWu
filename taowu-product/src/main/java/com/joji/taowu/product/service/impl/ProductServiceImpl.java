@@ -16,11 +16,9 @@ import com.joji.taowu.product.mapper.ProductMapper;
 import com.joji.taowu.product.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.BeanUtils;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -318,38 +316,17 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
     @Transactional
     @Override
-    public R save(ProductPictureParam productPictureParam) {
-        Product product = new Product();
-        //参数赋值
-        BeanUtils.copyProperties(productPictureParam, product);
-
-        //进行Picture对象封装
-        String pictures = productPictureParam.getPictures();
-
-        if (!StringUtils.isEmpty(pictures)) {
-            //$ + - * | / ？^符号在正则表达示中有相应的不同意义。
-            //一般来讲只需要加[]、或是\\即可
-            String[] pics = pictures.split("\\+");
-            for (String pic : pics) {
-                Picture picture = new Picture();
-                picture.setIntro(null);
-                picture.setProductId(product.getProductId());
-                picture.setProductPicture(pic);
-                //因为没有复用业务,无法使用mybatis-plus批量插入
-                pictureMapper.insert(picture);
-            }
-        }
-
+    public boolean save(Product product) {
         //商品数据保存
         int rows = productMapper.insert(product);
 
         if (rows == 0) {
-            return R.fail("商品保存失败!");
+            return false;
         }
 
         //保存成功,进行发送消息,product插入到es库中
         rabbitTemplate.convertAndSend("topic.ex", "insert.product", product);
-        return R.ok("商品数据保存成功!");
+        return true;
     }
 
     @Override
@@ -373,12 +350,13 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
      * 3.删除商品数据 和 删除商品对应的图片详情
      * 3.检查收藏夹是否存在  删除 收藏夹商品
      * 4.通知es搜索服务删除
-     * @param productId
+     * @param product
      * @return
      */
     @Transactional
     @Override
-    public R remove(Integer productId) {
+    public R remove(Product product) {
+        int productId = product.getProductId();
         //1.检查购物车是否存在
         R r = cartClient.checkProduct(productId);
 

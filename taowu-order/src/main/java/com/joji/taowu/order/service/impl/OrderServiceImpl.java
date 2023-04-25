@@ -155,14 +155,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper,Order> implements 
 
     @Override
     public Object check(Integer productId) {
-        QueryWrapper<Order> queryWrapper
-                = new QueryWrapper<>();
+        Order order = orderMapper.checkOrder(productId);
 
-        queryWrapper.eq("product_id",productId);
-
-        Long total = baseMapper.selectCount(queryWrapper);
-
-        if (total == 0){
+        if (order == null){
 
             return R.ok("订单中不存在要删除的商品!");
         }

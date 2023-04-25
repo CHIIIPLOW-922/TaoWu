@@ -97,10 +97,10 @@ public interface ProductService extends IService<Product> {
 
     /**
      * 保存商品信息
-     * @param productPictureParam
+     * @param product
      * @return
      */
-    R save(ProductPictureParam productPictureParam);
+    boolean save(Product product);
 
     /**
      * 商品数据进行更新
@@ -111,8 +111,8 @@ public interface ProductService extends IService<Product> {
 
     /**
      * 移除商品信息
-     * @param productId
+     * @param product
      * @return
      */
-    R remove(Integer productId);
+    R remove(Product product);
 }

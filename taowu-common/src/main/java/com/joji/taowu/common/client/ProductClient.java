@@ -50,13 +50,13 @@ public interface ProductClient {
     R searchPage(@RequestBody ProductSearchParam productSearchParam);
 
     @PostMapping("/product/save")
-    R save(@RequestBody ProductPictureParam productPictureParam);
+    R save(@RequestBody Product product);
 
     @PostMapping("/product/update")
     R update(@RequestBody  Product product);
 
     @PostMapping("product/remove")
-    R remove(@RequestBody Integer productId);
+    R remove(@RequestBody Product product);
 
 
     @PostMapping("picture/list")

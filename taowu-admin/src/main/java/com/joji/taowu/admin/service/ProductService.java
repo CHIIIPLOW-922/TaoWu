@@ -21,10 +21,10 @@ public interface ProductService {
      *    2.保存商品图片 [异步]
      *    3.商品缓存数据处理 [注解]
      *    4.添加缓存es处理 [异步]
-     * @param productPictureParam
+     * @param product
      * @return
      */
-    Object save(ProductPictureParam productPictureParam);
+    Object save(Product product);
 
     /**
      * 修改商品信息
@@ -38,8 +38,8 @@ public interface ProductService {
 
     /**
      * 删除商品数据
-     * @param productId
+     * @param product
      * @return
      */
-    Object remove(Integer productId);
+    Object remove(Product product);
 }

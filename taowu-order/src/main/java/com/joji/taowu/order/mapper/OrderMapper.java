@@ -18,4 +18,6 @@ public interface OrderMapper extends BaseMapper<Order> {
      * @return
      */
     List<AdminOrderVO> selectAdminOrders(@Param("offset") int offset, @Param("number")int number);
+
+    Order checkOrder(@Param("product_id")Integer productId);
 }

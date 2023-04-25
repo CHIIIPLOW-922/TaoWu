@@ -119,8 +119,11 @@ public class ProductController {
 
 
     @PostMapping("save")
-    public R save(@RequestBody ProductPictureParam productPictureParam){
-        return productService.save(productPictureParam);
+    public R save(@RequestBody Product product){
+        if(productService.save(product)){
+            return R.ok("添加商品成功");
+        }
+        return R.fail("添加商品失败");
     }
 
 
@@ -130,8 +133,8 @@ public class ProductController {
     }
 
     @PostMapping("remove")
-    public R remove(@RequestBody Integer productId){
+    public R remove(@RequestBody Product product){
 
-        return productService.remove(productId);
+        return productService.remove(product);
     }
 }
