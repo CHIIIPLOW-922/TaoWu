@@ -44,7 +44,7 @@ public class ProductController {
      * @return
      */
     @PostMapping("update")
-    public Object update(Product product){
+    public Object update(@RequestBody Product product){
 
         return productService.update(product);
     }
