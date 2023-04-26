@@ -18,8 +18,8 @@ public class PictureController {
     @Resource
     private PictureService pictureService;
 
-    @GetMapping("list")
-    public Object list(PictureParam pictureParam){
+    @PostMapping("list")
+    public Object list(@RequestBody PictureParam pictureParam){
         return pictureService.listPic(pictureParam);
     }
 
