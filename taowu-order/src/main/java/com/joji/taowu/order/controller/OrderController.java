@@ -2,6 +2,7 @@ package com.joji.taowu.order.controller;
 
 import com.joji.taowu.common.param.OrderParam;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.ProductSearchParam;
 import com.joji.taowu.order.service.OrderService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,8 +58,8 @@ public class OrderController {
 
 
     @PostMapping("/admin/list")
-    public Object adminList(@RequestBody PageParam pageParam){
+    public Object adminList(@RequestBody ProductSearchParam productSearchParam){
 
-        return orderService.adminList(pageParam);
+        return orderService.adminList(productSearchParam);
     }
 }

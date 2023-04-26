@@ -2,6 +2,7 @@ package com.joji.taowu.common.client;
 
 import com.joji.taowu.common.entity.Category;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.PictureParam;
 import com.joji.taowu.common.param.ProductCategoryParam;
 import com.joji.taowu.common.utils.R;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -29,7 +30,7 @@ public interface CategoryClient {
 
 
     @PostMapping("/category/admin/list")
-    R pageList(@RequestBody PageParam pageParam);
+    R pageList(@RequestBody PictureParam pictureParam);
 
 
     @PostMapping("/category/admin/update")

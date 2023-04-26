@@ -14,7 +14,7 @@ import java.math.BigDecimal;
  * */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-@TableName("order")
+@TableName("orders")
 public class Order implements Serializable {
 
     @TableId(type = IdType.AUTO)

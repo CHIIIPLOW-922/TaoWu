@@ -3,6 +3,7 @@ package com.joji.taowu.admin.controller;
 import com.joji.taowu.admin.service.CategoryService;
 import com.joji.taowu.common.entity.Category;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.PictureParam;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -19,10 +20,10 @@ public class CategoryController {
     @Resource
     private CategoryService categoryService;
 
-    @GetMapping("/list")
-    public Object list(PageParam pageParam){
+    @PostMapping("/list")
+    public Object list(@RequestBody PictureParam pictureParam){
 
-        return  categoryService.listPage(pageParam);
+        return  categoryService.listPage(pictureParam);
     }
 
     @PostMapping("/update")

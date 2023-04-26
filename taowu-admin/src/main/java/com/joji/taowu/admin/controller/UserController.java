@@ -4,6 +4,7 @@ package com.joji.taowu.admin.controller;
 import com.joji.taowu.admin.service.UserService;
 import com.joji.taowu.common.entity.User;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.PictureParam;
 import com.joji.taowu.common.utils.R;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +20,10 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @GetMapping("list")
-    public Object list(PageParam pageParam){
+    @PostMapping("list")
+    public Object list(@RequestBody PictureParam pictureParam){
 
-        return userService.listPage(pageParam);
+        return userService.listPage(pictureParam);
     }
 
 
@@ -44,7 +45,6 @@ public class UserController {
 
 
     @PostMapping("save")
-    @ResponseBody
     public Object save(@RequestBody User user){
 
         return userService.save(user);

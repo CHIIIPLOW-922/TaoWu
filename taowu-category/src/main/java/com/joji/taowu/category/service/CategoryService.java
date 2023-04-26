@@ -2,6 +2,7 @@ package com.joji.taowu.category.service;
 
 import com.joji.taowu.common.entity.Category;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.PictureParam;
 import com.joji.taowu.common.param.ProductCategoryParam;
 import com.joji.taowu.common.utils.R;
 
@@ -33,10 +34,10 @@ public interface CategoryService {
 
     /**
      * 分页查询
-     * @param pageParam
+     * @param pictureParam
      * @return
      */
-    R page(PageParam pageParam);
+    R page(PictureParam pictureParam);
 
     /**
      * 修改类别名
@@ -47,7 +48,7 @@ public interface CategoryService {
 
     /**
      * 删除对应的类别! 需要判断是否被引用
-     * @param categoryId
+     * @param category
      * @return
      */
     R remove(Category category);

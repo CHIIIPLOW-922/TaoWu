@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.joji.taowu.common.entity.Order;
 import com.joji.taowu.common.param.OrderParam;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.ProductSearchParam;
 
 
 /**
@@ -34,8 +35,8 @@ public interface OrderService extends IService<Order> {
 
     /**
      * 分页查询订单数据
-     * @param pageParam
+     * @param productSearchParam
      * @return
      */
-    Object adminList(PageParam pageParam);
+    Object adminList(ProductSearchParam productSearchParam);
 }

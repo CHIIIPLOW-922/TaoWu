@@ -2,6 +2,8 @@ package com.joji.taowu.admin.service;
 
 import com.joji.taowu.common.entity.Category;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.PictureParam;
+
 /**
  * 后台管理商品分类业务层
  * */
@@ -9,10 +11,10 @@ public interface CategoryService {
 
     /**
      * 分页数据查询
-     * @param pageParam
+     * @param pictureParam
      * @return
      */
-    Object listPage(PageParam pageParam);
+    Object listPage(PictureParam pictureParam);
 
     /**
      * 类别数据修改

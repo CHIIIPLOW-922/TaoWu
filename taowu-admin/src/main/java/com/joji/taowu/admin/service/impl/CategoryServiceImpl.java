@@ -4,6 +4,7 @@ import com.joji.taowu.admin.service.CategoryService;
 import com.joji.taowu.common.client.CategoryClient;
 import com.joji.taowu.common.entity.Category;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.PictureParam;
 import com.joji.taowu.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
@@ -24,9 +25,9 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryClient categoryClient;
 
     @Override
-    @Cacheable(value="list.category",key = "#pageParam.currentPage+'-'+#pageParam.pageSize")
-    public Object listPage(PageParam pageParam) {
-        R r = categoryClient.pageList(pageParam);
+    @Cacheable(value="list.category",key = "#pictureParam.currentPage+'-'+#pictureParam.pageSize")
+    public Object listPage(PictureParam pictureParam) {
+        R r = categoryClient.pageList(pictureParam);
 
         log.info("CategoryServiceImpl.listPage业务结束，结果:{}",r);
         return r;

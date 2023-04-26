@@ -2,6 +2,8 @@ package com.joji.taowu.admin.service;
 
 import com.joji.taowu.common.entity.User;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.PictureParam;
+
 /**
  * 后台管理系统商城用户业务层
  * */
@@ -9,10 +11,10 @@ public interface UserService {
 
     /**
      * 分页数据查询,用户模块
-     * @param pageParam
+     * @param pictureParam
      * @return
      */
-    Object listPage(PageParam pageParam);
+    Object listPage(PictureParam pictureParam);
 
     /**
      * 删除用户数据

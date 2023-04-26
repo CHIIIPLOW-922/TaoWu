@@ -3,6 +3,7 @@ package com.joji.taowu.user.service;
 import com.aliyuncs.exceptions.ClientException;
 import com.joji.taowu.common.entity.User;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.PictureParam;
 import com.joji.taowu.common.utils.R;
 
 import java.util.List;
@@ -46,10 +47,10 @@ public interface UserService {
 
     /**
      * 分页数据查询
-     * @param pageParam
+     * @param pictureParam
      * @return
      */
-    Object listPage(PageParam pageParam);
+    Object listPage(PictureParam pictureParam);
 
     /**
      * 删除用户数据
@@ -64,4 +65,18 @@ public interface UserService {
      * @return
      */
     Object update(User user,String verifyCode);
+
+
+    /**
+     * 后台管理系统添加账号
+     * @param user
+     * @return
+     * */
+    Object addUser(User user);
+
+
+    /**
+     * 后台管理系统编辑账号
+     * */
+    Object editUser(User user);
 }

@@ -4,6 +4,7 @@ package com.joji.taowu.category.controller;
 import com.joji.taowu.category.service.CategoryService;
 import com.joji.taowu.common.entity.Category;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.PictureParam;
 import com.joji.taowu.common.param.ProductCategoryParam;
 import com.joji.taowu.common.utils.R;
 import org.springframework.web.bind.annotation.*;
@@ -37,13 +38,13 @@ public class CategoryController {
 
     /**
      * 后台管理调用服务
-     * @param pageParam
+     * @param pictureParam
      * @return
      */
     @PostMapping("admin/list")
-    public R pageList(@RequestBody PageParam pageParam){
+    public R pageList(@RequestBody PictureParam pictureParam){
 
-        return categoryService.page(pageParam);
+        return categoryService.page(pictureParam);
     }
 
 

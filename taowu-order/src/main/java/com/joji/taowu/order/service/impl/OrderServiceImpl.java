@@ -5,10 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.joji.taowu.common.client.ProductClient;
 import com.joji.taowu.common.entity.Order;
 import com.joji.taowu.common.entity.Product;
-import com.joji.taowu.common.param.OrderParam;
-import com.joji.taowu.common.param.PageParam;
-import com.joji.taowu.common.param.ProductListParam;
-import com.joji.taowu.common.param.ProductNumberParam;
+import com.joji.taowu.common.param.*;
 import com.joji.taowu.common.utils.R;
 import com.joji.taowu.common.vo.AdminOrderVO;
 import com.joji.taowu.common.vo.CartVO;
@@ -166,9 +163,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper,Order> implements 
     }
 
     @Override
-    public Object adminList(PageParam pageParam) {
-        int offset = (pageParam.getCurrentPage()-1)*pageParam.getPageSize();
-        int number = pageParam.getPageSize();
+    public Object adminList(ProductSearchParam productSearchParam) {
+        int offset = (productSearchParam.getCurrentPage()-1)*productSearchParam.getPageSize();
+        int number = productSearchParam.getPageSize();
 
         //查询数量
         Long total = orderMapper.selectCount(null);

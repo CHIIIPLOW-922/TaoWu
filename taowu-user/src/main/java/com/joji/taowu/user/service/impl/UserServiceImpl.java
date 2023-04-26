@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.joji.taowu.common.constants.SaltConstant;
 import com.joji.taowu.common.entity.User;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.PictureParam;
 import com.joji.taowu.common.utils.MD5Util;
 import com.joji.taowu.common.utils.R;
 import com.joji.taowu.user.mapper.UserMapper;
@@ -168,10 +169,10 @@ public class UserServiceImpl implements UserService {
      * 分页查询用户服务
      * */
     @Override
-    public Object listPage(PageParam pageParam) {
+    public Object listPage(PictureParam pictureParam) {
 
-        int currentPage = pageParam.getCurrentPage();
-        int pageSize = pageParam.getPageSize();
+        int currentPage = pictureParam.getCurrentPage();
+        int pageSize = pictureParam.getPageSize();
 
         //设置分页属性
         IPage<User> page = new Page<>(currentPage,pageSize);
@@ -232,6 +233,61 @@ public class UserServiceImpl implements UserService {
             user.setUserPassword(MD5Util.encode(user.getUserPassword() + SaltConstant.PASSWORD_SALT));
         }
 
+        int rows = userMapper.updateById(user);
+
+        if (rows == 0) {
+            return R.fail("用户修改失败!");
+        }
+        return R.ok("用户修改成功");
+    }
+
+    @Override
+    public Object addUser(User user) {
+        //注册信息是否完整校验
+        if (StringUtils.isEmpty(user.getUserName()) || StringUtils.isEmpty(user.getUserPassword())) {
+            log.info("淘物商城用户注册业务结束，结果:{}", user);
+            return R.fail("账号或者密码为空,注册失败!");
+        }
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_name", user.getUserName());
+        Long result = userMapper.selectCount(queryWrapper);
+        //账号是否重复校验
+        if (result > 0) {
+            log.info("淘物商城用户注册业务结束，结果:{}", result);
+            return R.fail("该账号已存在，请重新注册");
+        }
+        //密码加盐
+        String saltPassword = MD5Util.encode(user.getUserPassword() + SaltConstant.PASSWORD_SALT);
+        //数据库保存加盐密码
+        user.setUserPassword(saltPassword);
+        //插入新用户数据
+        int row = userMapper.insert(user);
+
+        if (row > 0) {
+            log.info("淘物商城用户注册业务结束，结果:{}", row);
+            return R.ok("用户注册成功！");
+        }
+
+        return R.fail("注册失败，请重新注册");
+    }
+
+    @Override
+    public Object editUser(User user) {
+        //检查密码,如果和数据库一致 不需要加密! 证明密码没有修改!
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", user.getUserId());
+        queryWrapper.eq("user_password", user.getUserPassword());
+
+        Long total = userMapper.selectCount(queryWrapper);
+        //手机号码短信验证
+        if (StringUtils.isEmpty(user.getUserPhone())) {
+            log.info("淘物商城用户修改业务结束，结果:{}", user);
+            return R.fail("用户修改业务手机号码为空，请补充");
+        }
+        if (total == 0) {
+            //密码不同,已经修改! 新密码需要加密
+            user.setUserPassword(MD5Util.encode(user.getUserPassword() + SaltConstant.PASSWORD_SALT));
+        }
         int rows = userMapper.updateById(user);
 
         if (rows == 0) {

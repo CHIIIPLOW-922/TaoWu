@@ -4,6 +4,7 @@ import com.joji.taowu.admin.service.UserService;
 import com.joji.taowu.common.client.UserClient;
 import com.joji.taowu.common.entity.User;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.PictureParam;
 import com.joji.taowu.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
@@ -24,9 +25,9 @@ public class UserServiceImpl implements UserService {
     private UserClient userClient;
 
     @Override
-    @Cacheable(value = "list.user",key = "#pageParam.currentPage+'-'+#pageParam.pageSize")
-    public Object listPage(PageParam pageParam) {
-        R r = userClient.listPage(pageParam);
+    @Cacheable(value = "list.user",key = "#pictureParam.currentPage+'-'+#pictureParam.pageSize")
+    public Object listPage(PictureParam pictureParam) {
+        R r = userClient.listPage(pictureParam);
 
         log.info("UserServiceImpl.listPage业务结束，结果:{}",r);
 
@@ -60,6 +61,9 @@ public class UserServiceImpl implements UserService {
     )
     public Object update(User user) {
         R r = userClient.update(user);
+        if (r.getCode()=="922"){
+            return R.fail("编辑用户失败！");
+        }
         log.info("UserServiceImpl.update业务结束，结果:{}",r);
         return r;
     }
@@ -73,8 +77,11 @@ public class UserServiceImpl implements UserService {
             }
     )
     public Object save(User user) {
-        R ok = userClient.save(user);
-        log.info("UserServiceImpl.save业务结束，结果:{}",ok);
-        return ok;
+
+        R r = userClient.save(user);
+        if (r.getCode() =="229"){
+            return R.fail("添加用户失败！");
+        }
+        return r;
     }
 }

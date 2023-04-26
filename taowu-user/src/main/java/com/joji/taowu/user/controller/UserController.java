@@ -4,6 +4,7 @@ package com.joji.taowu.user.controller;
 import com.aliyuncs.exceptions.ClientException;
 import com.joji.taowu.common.entity.User;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.PictureParam;
 import com.joji.taowu.common.utils.R;
 import com.joji.taowu.user.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -86,9 +87,25 @@ public class UserController {
      * 后台管理调用
      */
     @PostMapping("/list")
-    public Object listPage(@RequestBody PageParam pageParam) {
+    public Object listPage(@RequestBody PictureParam pictureParam) {
 
-        return userService.listPage(pageParam);
+        return userService.listPage(pictureParam);
+    }
+
+    /**
+     * 后台编辑用户
+     * */
+    @PostMapping("admin/update")
+    public Object editUser(@RequestBody User user){
+        return userService.editUser(user);
+    }
+
+    /**
+     * 后台添加用户
+     * */
+    @PostMapping("admin/save")
+    public Object addUser(@RequestBody User user){
+        return userService.addUser(user);
     }
 
 }

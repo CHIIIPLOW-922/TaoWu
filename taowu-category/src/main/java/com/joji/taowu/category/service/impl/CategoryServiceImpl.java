@@ -9,6 +9,7 @@ import com.joji.taowu.category.service.CategoryService;
 import com.joji.taowu.common.client.ProductClient;
 import com.joji.taowu.common.entity.Category;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.PictureParam;
 import com.joji.taowu.common.param.ProductCategoryParam;
 import com.joji.taowu.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
@@ -93,9 +94,9 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public R page(PageParam pageParam) {
+    public R page(PictureParam pictureParam) {
 
-        List<Category> records = categoryMapper.list(((pageParam.getCurrentPage()-1)* pageParam.getPageSize()), pageParam.getPageSize());
+        List<Category> records = categoryMapper.list(((pictureParam.getCurrentPage()-1)* pictureParam.getPageSize()), pictureParam.getPageSize());
         long total = categoryMapper.selectCount(null);
 
         R r = R.ok("查询类别数据成功!", records, total);

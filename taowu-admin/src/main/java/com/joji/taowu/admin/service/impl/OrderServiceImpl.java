@@ -3,6 +3,7 @@ package com.joji.taowu.admin.service.impl;
 import com.joji.taowu.admin.service.OrderService;
 import com.joji.taowu.common.client.OrderClient;
 import com.joji.taowu.common.param.PageParam;
+import com.joji.taowu.common.param.ProductSearchParam;
 import com.joji.taowu.common.utils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,8 @@ public class OrderServiceImpl implements OrderService {
     private OrderClient orderClient;
 
     @Override
-    public Object list(PageParam pageParam) {
-        R r = orderClient.adminList(pageParam);
+    public Object list(ProductSearchParam productSearchParam) {
+        R r = orderClient.adminList(productSearchParam);
 
         log.info("OrderServiceImpl.list业务结束，结果:{}",r);
 
