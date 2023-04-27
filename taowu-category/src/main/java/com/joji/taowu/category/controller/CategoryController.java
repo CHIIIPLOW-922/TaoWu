@@ -22,6 +22,16 @@ public class CategoryController {
     @Resource
     CategoryService categoryService;
 
+    /**
+     * 查询类别集合
+     * @return
+     */
+    @GetMapping
+    public List<Category> list(){
+
+        return  categoryService.list();
+    }
+
     @GetMapping("/{categoryName}")
     public Category detail(@PathVariable(value = "categoryName")String categoryName){
 

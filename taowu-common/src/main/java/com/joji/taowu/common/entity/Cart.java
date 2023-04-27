@@ -19,6 +19,6 @@ public class Cart implements Serializable {
     private Integer cartId;
     private Integer userId;
     private Integer productId;
-    private Integer num;
+    private Integer cartNum;
 
 }

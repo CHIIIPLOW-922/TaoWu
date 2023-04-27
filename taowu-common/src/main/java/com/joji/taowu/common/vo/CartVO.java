@@ -29,7 +29,7 @@ public class CartVO {
         this.productName = product.getProductName();
         this.productImg = product.getProductPicture();
         this.price = product.getProductSellprice();
-        this.num = cart.getNum();
+        this.num = cart.getCartNum();
         this.maxNum = product.getProductNum();
         this.check = false;
     }

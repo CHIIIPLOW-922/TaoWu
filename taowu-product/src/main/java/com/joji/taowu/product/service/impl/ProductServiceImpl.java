@@ -254,7 +254,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
      * @param productListParam
      * @return
      */
-    @Cacheable(value = "list.product", key = "#productListParam.productIds")
+    @Cacheable(value = "list.product", key = "#productListParam.productList")
     @Override
     public List<Product> ids(ProductListParam productListParam) {
         List<Integer> productIds = productListParam.getProductList();

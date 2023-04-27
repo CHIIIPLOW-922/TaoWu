@@ -62,7 +62,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper,Cart> implements Car
         if (cart != null){
             //不是第一次,直接返回已经添加过即可!
             //更新属性 + 1
-            cart.setNum(cart.getNum()+1);
+            cart.setCartNum(cart.getCartNum()+1);
             cartMapper.updateById(cart);
             R ok = R.ok("商品已经在购物车,数量+1!");
             ok.setCode("002");
@@ -70,7 +70,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper,Cart> implements Car
         }
         //3.第一次结果封装
         cart = new Cart();
-        cart.setNum(1);
+        cart.setCartNum(1);
         cart.setProductId(cartParam.getProductId());
         cart.setUserId(cartParam.getUserId());
 
@@ -148,7 +148,7 @@ public class CartServiceImpl extends ServiceImpl<CartMapper,Cart> implements Car
         queryWrapper.eq("product_id",cartParam.getProductId());
         Cart cart = cartMapper.selectOne(queryWrapper);
 
-        cart.setNum(cartParam.getNum());
+        cart.setCartNum(cartParam.getNum());
 
         cartMapper.updateById(cart);
         //4.结果封装
