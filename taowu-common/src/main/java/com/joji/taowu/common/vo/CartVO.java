@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.joji.taowu.common.entity.Cart;
 import com.joji.taowu.common.entity.Product;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -12,7 +14,8 @@ import java.math.BigDecimal;
  * */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-public class CartVO {
+@NoArgsConstructor
+public class CartVO implements Serializable {
 
     private Integer id;  //购物车id
     private Integer productID;  //商品id

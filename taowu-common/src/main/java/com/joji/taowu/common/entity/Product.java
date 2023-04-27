@@ -17,9 +17,9 @@ import java.math.BigDecimal;
  * 淘物商城商品实体类
  * */
 @Data
-@TableName("product")
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@TableName("product")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Product implements Serializable {
 
