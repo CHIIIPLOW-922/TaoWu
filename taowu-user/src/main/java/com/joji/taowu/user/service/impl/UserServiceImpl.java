@@ -41,12 +41,6 @@ public class UserServiceImpl implements UserService {
     RedisSmsCache redisSmsCache;
 
 
-    @Override
-    public List<User> list() {
-        List<User> userList = userMapper.selectList(null);
-        log.info("淘物商城所有用户查询业务结束，结果:{}", userList);
-        return userList;
-    }
 
 
     /**
@@ -171,16 +165,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public Object listPage(PictureParam pictureParam) {
 
-        int currentPage = pictureParam.getCurrentPage();
+        int currentPage = pictureParam.getCurrentPage()-1;
         int pageSize = pictureParam.getPageSize();
 
-        //设置分页属性
-        IPage<User> page = new Page<>(currentPage,pageSize);
-        page = userMapper.selectPage(page, null);
 
         //结果封装
-        long total = page.getTotal();
-        List<User> records = page.getRecords();
+        long total = userMapper.selectCount(null);
+        List<User> records = userMapper.list((currentPage*pageSize),pageSize);
+
 
         R ok = R.ok("查询成功!", records, total);
 

@@ -25,15 +25,6 @@ public class UserController {
 
 
     /**
-     * 所有用户查询
-     */
-    @GetMapping("list")
-    public List<User> list() {
-
-        return userService.list();
-    }
-
-    /**
      * 重复用户验证
      */
     @PostMapping("check")

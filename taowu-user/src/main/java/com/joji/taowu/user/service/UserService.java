@@ -13,8 +13,6 @@ import java.util.List;
  * */
 public interface UserService {
 
-    List<User> list();
-
     /**
      * 检查账号是否可用
      * @param userName

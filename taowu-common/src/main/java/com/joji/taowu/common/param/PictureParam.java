@@ -9,6 +9,6 @@ import java.io.Serializable;
 public class PictureParam implements Serializable {
     public static final Long serialVersionUID = 1L;
 
-    private Integer currentPage;
-    private Integer pageSize;
+    private Integer currentPage=1;
+    private Integer pageSize=15;
 }
