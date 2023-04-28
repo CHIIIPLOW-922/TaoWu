@@ -5,7 +5,7 @@
 <mapper namespace="com.joji.taowu.user.mapper.UserMapper">
 
     <select id="list" resultType="com.joji.taowu.common.entity.User">
-        SELECT user_id,user_name,user_phone,user_password FROM `user` GROUP BY user_id  LIMIT #{offset},#{number}
+        SELECT user_id,user_name,user_phone,user_password FROM users GROUP BY user_id  LIMIT #{offset},#{number}
     </select>
 
 </mapper>

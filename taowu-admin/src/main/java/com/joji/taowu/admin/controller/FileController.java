@@ -14,14 +14,6 @@ import java.io.IOException;
 @RestController
 @RequestMapping("admin/files")
 public class FileController {
-    /*@Autowired
-    private FileClient fileClient;*/
-
-    /*@PostMapping("upload")
-    public String upload(MultipartFile file) throws IOException {
-        System.out.println(file.getBytes().length);
-        return fileClient.upload(file);
-    }*/
 
     @PostMapping("upload")
     public R upload(MultipartFile file) {
@@ -29,7 +21,7 @@ public class FileController {
             // 保存文件到指定目录
             String fileName = file.getOriginalFilename();
             System.out.println(fileName);
-            String filePath = "public/"+fileName;
+            String filePath = "public/imgs/"+fileName;
             String rootFilePath  = System.getProperty("user.dir")+"/taowu-static/src/main/resources/"+filePath;
             FileUtil.writeBytes(file.getBytes(),rootFilePath);//把文件写入到上传的路径
 

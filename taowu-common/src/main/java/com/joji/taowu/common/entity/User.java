@@ -14,7 +14,7 @@ import java.io.Serializable;
  * 淘物商城用户实体
  * */
 @Data
-@TableName("user")
+@TableName("users")
 public class User implements Serializable {
 
     public static final Long serialVersionUID = 1L;

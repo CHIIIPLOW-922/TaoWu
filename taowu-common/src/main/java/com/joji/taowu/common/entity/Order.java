@@ -9,6 +9,8 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
+
 /**
  * 淘物商城订单实体类
  * */
@@ -30,5 +32,5 @@ public class Order implements Serializable {
     @JsonProperty("product_price")
     private BigDecimal productPrice;
     @JsonProperty("order_time")
-    private Long    orderTime;
+    private long orderTime;
 }

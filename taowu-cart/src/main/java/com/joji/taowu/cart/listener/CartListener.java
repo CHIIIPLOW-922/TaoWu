@@ -8,7 +8,6 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -18,7 +17,7 @@ import java.util.List;
 public class CartListener {
 
 
-    @Resource
+    @Autowired
     private CartService cartService;
 
     /**

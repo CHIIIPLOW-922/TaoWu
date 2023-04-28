@@ -224,6 +224,14 @@ public class UserServiceImpl implements UserService {
             //密码不同,已经修改! 新密码需要加密
             user.setUserPassword(MD5Util.encode(user.getUserPassword() + SaltConstant.PASSWORD_SALT));
         }
+        QueryWrapper<User> checkqueryWrapper = new QueryWrapper<>();
+        checkqueryWrapper.eq("user_name",user.getUserName());
+        Long result = userMapper.selectCount(checkqueryWrapper);
+        //账号是否重复校验
+        if (result > 0) {
+            log.info("淘物商城用户注册业务结束，结果:{}", result);
+            return R.fail("该账号已存在，请重新注册");
+        }
 
         int rows = userMapper.updateById(user);
 
@@ -246,7 +254,7 @@ public class UserServiceImpl implements UserService {
         //账号是否重复校验
         if (result > 0) {
             log.info("淘物商城用户注册业务结束，结果:{}", result);
-            return R.fail("该账号已存在，请重新注册");
+            return R.fail("该账号已存在");
         }
         //密码加盐
         String saltPassword = MD5Util.encode(user.getUserPassword() + SaltConstant.PASSWORD_SALT);
@@ -260,7 +268,7 @@ public class UserServiceImpl implements UserService {
             return R.ok("用户注册成功！");
         }
 
-        return R.fail("注册失败，请重新注册");
+        return R.fail("注册失败，请重新添加");
     }
 
     @Override
@@ -275,6 +283,14 @@ public class UserServiceImpl implements UserService {
         if (StringUtils.isEmpty(user.getUserPhone())) {
             log.info("淘物商城用户修改业务结束，结果:{}", user);
             return R.fail("用户修改业务手机号码为空，请补充");
+        }
+        QueryWrapper<User> checkqueryWrapper = new QueryWrapper<>();
+        checkqueryWrapper.eq("user_name",user.getUserName());
+        Long result = userMapper.selectCount(checkqueryWrapper);
+        //账号是否重复校验
+        if (result > 0) {
+            log.info("淘物商城用户注册业务结束，结果:{}", result);
+            return R.fail("该账号已存在");
         }
         if (total == 0) {
             //密码不同,已经修改! 新密码需要加密

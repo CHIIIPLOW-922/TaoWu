@@ -12,9 +12,9 @@ import com.joji.taowu.common.param.ProductListParam;
 import com.joji.taowu.common.utils.R;
 import com.joji.taowu.common.vo.CartVO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,10 +27,10 @@ import java.util.stream.Collectors;
 @Slf4j
 public class CartServiceImpl extends ServiceImpl<CartMapper,Cart> implements CartService{
 
-    @Resource
+    @Autowired
     private ProductClient productClient;
 
-    @Resource
+    @Autowired
     private CartMapper cartMapper;
 
     @Override
