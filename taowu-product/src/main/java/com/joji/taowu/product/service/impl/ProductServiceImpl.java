@@ -400,4 +400,18 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         log.info("ProductServiceImpl.remove业务结束，结果:{}",ok);
         return ok;
     }
+
+    @Override
+    public Object adminList(ProductSearchParam productSearchParam) {
+        Integer offset = (productSearchParam.getCurrentPage()-1)*productSearchParam.getPageSize();
+        Integer number = productSearchParam.getPageSize();
+        List<Product> productList = productMapper.list(offset,number);
+        long total = productMapper.selectCount(null);
+        if (productList !=null ){
+            return R.ok("后台管理商品模块信息查询成功",productList,total);
+        }
+        return R.fail("加载失败");
+    }
+
+
 }

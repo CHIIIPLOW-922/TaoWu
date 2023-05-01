@@ -58,6 +58,9 @@ public interface ProductClient {
     @PostMapping("product/remove")
     R remove(@RequestBody Product product);
 
+    @PostMapping("product/admin/list")
+    R adminList(@RequestBody ProductSearchParam productSearchParam);
+
 
     @PostMapping("picture/list")
     R listPic(@RequestBody PictureParam pictureParam);

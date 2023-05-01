@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joji.taowu.product.mapper.ProductMapper">
+
+    <select id="list" resultType="com.joji.taowu.common.entity.Product">
+        SELECT product_id,product_name,category_id,product_title,product_intro,product_picture,product_price,product_sellprice,product_num,product_sales FROM product GROUP BY product_id LIMIT #{offset},#{number}
+    </select>
+
+</mapper>

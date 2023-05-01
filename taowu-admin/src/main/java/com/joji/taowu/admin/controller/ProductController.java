@@ -21,8 +21,8 @@ public class ProductController {
     private ProductService productService;
 
 
-    @GetMapping("list")
-    public Object list(ProductSearchParam productSearchParam){
+    @PostMapping("list")
+    public Object list(@RequestBody ProductSearchParam productSearchParam){
 
         return productService.list(productSearchParam);
     }

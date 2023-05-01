@@ -115,4 +115,11 @@ public interface ProductService extends IService<Product> {
      * @return
      */
     R remove(Product product);
+
+
+    /**
+     * 后台管理系统商品模块查询
+     * @param productSearchParam
+     * */
+    Object adminList(ProductSearchParam productSearchParam);
 }

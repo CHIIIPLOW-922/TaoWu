@@ -108,6 +108,11 @@ public class ProductController {
         return productService.search(productSearchParam);
     }
 
+    @PostMapping("admin/list")
+    public Object adminList(@RequestBody ProductSearchParam productSearchParam){
+        return productService.adminList(productSearchParam);
+    }
+
     /**
      * 类别服务调用管理调用
      */

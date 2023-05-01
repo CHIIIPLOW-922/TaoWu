@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Object list(ProductSearchParam productSearchParam) {
-        R r = productClient.searchPage(productSearchParam);
+        R r = productClient.adminList(productSearchParam);
 
         log.info("ProductServiceImpl.list业务结束，结果:{}",r);
         return r;
