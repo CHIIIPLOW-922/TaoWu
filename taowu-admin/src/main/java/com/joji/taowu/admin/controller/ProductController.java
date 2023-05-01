@@ -27,6 +27,11 @@ public class ProductController {
         return productService.list(productSearchParam);
     }
 
+    @GetMapping("search")
+    public Object search(ProductSearchParam productSearchParam){
+        return productService.search(productSearchParam);
+    }
+
     /**
      * 商品信息保存
      * @param product

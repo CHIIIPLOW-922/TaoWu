@@ -9,11 +9,18 @@ import com.joji.taowu.common.param.ProductSearchParam;
 public interface ProductService {
 
     /**
-     * 商品分页,关键字分页查询!
+     * 商品分页
      * @param productSearchParam
      * @return
      */
     Object list(ProductSearchParam productSearchParam);
+
+
+    /**
+     * 商品分页,关键字分页查询!
+     * @param productSearchParam
+     */
+    Object search(ProductSearchParam productSearchParam);
 
     /**
      * 保存商品业务!

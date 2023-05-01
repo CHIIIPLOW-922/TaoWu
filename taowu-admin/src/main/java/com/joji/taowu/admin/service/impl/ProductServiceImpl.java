@@ -34,6 +34,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Object search(ProductSearchParam productSearchParam) {
+        R r = productClient.searchPage(productSearchParam);
+
+        log.info("ProductServiceImpl.list业务结束，结果:{}",r);
+        return r;
+    }
+
+    @Override
     @CacheEvict(value = "list.product", allEntries = true)
     public Object save(Product product) {
         //保存 商品和商品图片
