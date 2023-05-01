@@ -180,7 +180,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
      * @param productParam
      * @return
      */
-    @Cacheable(value = "list.product", key = "#productParam.currentPage+" +
+    @Cacheable(value = "list.productAll", key = "#productParam.currentPage+" +
             "'-'+#productParam.pageSize")
     @Override
     public Object all(ProductParam productParam) {

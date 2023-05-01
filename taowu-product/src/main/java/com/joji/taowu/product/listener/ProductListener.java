@@ -8,6 +8,8 @@ import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,6 +19,9 @@ import java.util.List;
  * */
 @Component
 public class ProductListener {
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Autowired
     private ProductService productService;
@@ -36,6 +41,10 @@ public class ProductListener {
 
         //调用业务修改库存即可
         productService.batchNumber(productNumberParams);
+        redisTemplate.execute((RedisCallback) connection -> {
+            connection.flushDb();
+            return null;
+        });
     }
 
 }
