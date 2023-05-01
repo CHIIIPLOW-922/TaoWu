@@ -239,7 +239,6 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
      * @param productSearchParam
      * @return
      */
-    @Cacheable(value = "list.product", key = "#productSearchParam.search+'-'+#productSearchParam.pageSize+'-'+#productSearchParam.currentPage")
     @Override
     public Object search(ProductSearchParam productSearchParam) {
         R r = searchClient.search(productSearchParam);
