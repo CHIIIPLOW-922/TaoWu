@@ -14,6 +14,11 @@ import java.util.List;
 public interface UserService {
 
     /**
+     * 展示用户信息
+     * */
+    R load(String userId);
+
+    /**
      * 检查账号是否可用
      * @param userName
      * @return

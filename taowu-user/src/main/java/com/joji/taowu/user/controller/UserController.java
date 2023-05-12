@@ -67,6 +67,14 @@ public class UserController {
     }
 
     /**
+     * 用户信息获取服务接口
+     * */
+    @PostMapping("load")
+    public Object load(@RequestParam String userId){
+        return userService.load(userId);
+    }
+
+    /**
      * 用户删除服务
      */
     @PostMapping("/remove")

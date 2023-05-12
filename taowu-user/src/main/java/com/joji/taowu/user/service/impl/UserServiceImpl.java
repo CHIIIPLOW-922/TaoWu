@@ -41,7 +41,16 @@ public class UserServiceImpl implements UserService {
     RedisSmsCache redisSmsCache;
 
 
-
+    @Override
+    public R load(String userId) {
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.eq("user_id",userId);
+        User user = userMapper.selectOne(queryWrapper);
+        if (user!=null){
+            return R.ok("用户信息获取成功！",user);
+        }
+        return R.fail("用户信息获取失败！");
+    }
 
     /**
      * 检查账号是否可用
@@ -290,7 +299,7 @@ public class UserServiceImpl implements UserService {
         //账号是否重复校验
         if (result > 0) {
             log.info("淘物商城用户注册业务结束，结果:{}", result);
-            return R.fail("该账号已存在");
+            return R.fail("该账号已存在或账号未有修改操作");
         }
         if (total == 0) {
             //密码不同,已经修改! 新密码需要加密
