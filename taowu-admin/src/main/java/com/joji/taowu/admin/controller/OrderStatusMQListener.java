@@ -18,128 +18,103 @@ package com.joji.taowu.admin.controller;
  */
 public class OrderStatusMQListener {
     private OrderService orderService = new OrderService();
+    private PayService payService = new PayService();
     private NotifyService notifyService = new NotifyService();
 
     public void consume(String orderNo) {
-        OrderInfo orderInfo = orderService.getOrderInfo(orderNo);
-        OrderType orderType = OrderType.fromString(orderInfo.getOrderBizType());
-        OrderStatus status = OrderStatus.fromCode(orderInfo.getStatus());
+        final OrderInfo orderInfo = orderService.getOrderInfo(orderNo);
+        // 订单业务类型
+        final String orderBizType = orderInfo.getOrderBizType();
+        // 订单状态
+        final int status = orderInfo.getStatus();
 
-        if (status == OrderStatus.CREATED) {
-            PaymentService paymentService = PaymentServiceFactory.createPaymentService(orderType);
-            boolean paymentSuccess = paymentService.pay(orderInfo);
-
-            if (!paymentSuccess) {
-                paymentService.handlePaymentFailure(orderInfo);
+        if (1 == status) { // 创建，待支付执行支付
+            // 酒店订单
+            if ("hotel".equals(orderBizType)) {
+                // 酒店订单支付前的检查 ......
+                payPrdOfHotelVerify(orderInfo);
+                // 信用支付
+                long payId = payService.payOfCredit(orderInfo);
+                // 如果支付失败关闭订单
+                if(payId < 0) {
+                    payService.notPayedToClose(orderInfo);
+                }
             }
-        } else if (status == OrderStatus.COMPLETED) {
-            orderService.updateOrderStatus(orderNo, OrderStatus.COMPLETED.getCode());
-            notifyService.notifyUsersAndOperations(orderType);
-        } else if (status == OrderStatus.REFUND_APPROVED) {
-            // 处理退款逻辑...
-        }
-        // 其他订单状态的处理...
-    }
-}
-
-enum OrderType {
-    HOTEL, TICKETS, VISA;
-
-    public static OrderType fromString(String type) {
-        switch (type.toLowerCase()) {
-            case "hotel":
-                return HOTEL;
-            case "tickets":
-                return TICKETS;
-            case "visa":
-                return VISA;
-            default:
-                throw new IllegalArgumentException("Unknown order business type: " + type);
-        }
-    }
-}
-
-enum OrderStatus {
-    CREATED(1), COMPLETED(4), REFUND_APPROVED(9);
-
-    private final int code;
-
-    OrderStatus(int code) {
-        this.code = code;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public static OrderStatus fromCode(int code) {
-        for (OrderStatus status : values()) {
-            if (status.getCode() == code) {
-                return status;
+            // 门票订单
+            else if ("tickets".equals(orderBizType)) {
+                long payId = -1;
+                for (int i = 0; i < 3; i++) { // 如果失败有3次重试
+                    // 信用支付
+                    payId = payService.payOfCredit(orderInfo);
+                    // payId >0 代表支付成功
+                    if (payId > 0) {
+                        break;
+                    }
+                }
+                // 如果支付失败关闭订单
+                if(payId < 0) {
+                    payService.notPayedToClose(orderInfo);
+                }
+            }
+            // 签证订单
+            else if ("visa".equals(orderBizType)) {
+                // 三方支付
+                long payId = payService.payOfAliPay(orderInfo);
+                // 如果支付失败关闭订单
+                if(payId < 0) {
+                    payService.notPayedToClose(orderInfo);
+                }
+                // 如果支付成功
+                else {
+                    // 签证订单支付后业务上要处理的一些逻辑
+                    payAfterOfVisaBusiness(payId, orderInfo);
+                }
+            }
+        } else if (4 == status) { // 订单完成
+            // 酒店订单
+            if ("hotel".equals(orderBizType)) {
+                // 更新订单状态
+                orderService.updateOrderStatus(orderNo, 4);
+                // 给运营发钉钉通知
+                notifyService.dingding("发送到酒店运营群里的内容");
+                // 给用户发短信
+                notifyService.sms("发送到给酒店用户的内容");
+            }
+            // 门票订单
+            else if ("tickets".equals(orderBizType)) {
+                // 更新订单状态
+                orderService.updateOrderStatus(orderNo, 4);
+                // 给运营发钉钉通知
+                notifyService.dingding("发送到门票运营群里的内容");
+                // 给用户发短信
+                notifyService.sms("发送到给门票用户的内容");
+                // 给用户发微信通知
+                notifyService.wechat("发送到给门票用户的内容");
+            }
+            // 签证订单
+            else if ("visa".equals(orderBizType)) {
+                // 更新订单状态
+                orderService.updateOrderStatus(orderNo, 4);
+                // 给运营发钉钉通知
+                notifyService.dingding("发送到签证运营群里的内容");
+                // 给用户发微信通知
+                notifyService.wechat("发送到给签证用户的内容");
             }
         }
-        throw new IllegalArgumentException("Unknown order status code: " + code);
-    }
-}
+        // 同意退款 待未来业务扩展......
+        else if (9 == status) {
 
-interface PaymentService {
-    boolean pay(OrderInfo orderInfo);
-
-    void handlePaymentFailure(OrderInfo orderInfo);
-}
-
-class HotelPaymentService implements PaymentService {
-    @Override
-    public boolean pay(OrderInfo orderInfo) {
-        // 酒店订单支付逻辑...
-        return true; // 支付成功返回true，失败返回false
-    }
-
-    @Override
-    public void handlePaymentFailure(OrderInfo orderInfo) {
-        // 酒店订单未支付关闭逻辑...
-    }
-}
-
-class TicketsPaymentService implements PaymentService {
-    @Override
-    public boolean pay(OrderInfo orderInfo) {
-        // 门票订单支付逻辑...
-        return true; // 支付成功返回true，失败返回false
-    }
-
-    @Override
-    public void handlePaymentFailure(OrderInfo orderInfo) {
-        // 门票订单未支付关闭逻辑...
-    }
-}
-
-class VisaPaymentService implements PaymentService {
-    @Override
-    public boolean pay(OrderInfo orderInfo) {
-        // 签证订单支付逻辑...
-        return true; // 支付成功返回true，失败返回false
-    }
-
-    @Override
-    public void handlePaymentFailure(OrderInfo orderInfo) {
-        // 签证订单未支付关闭逻辑...
-    }
-}
-
-class PaymentServiceFactory {
-    public static PaymentService createPaymentService(OrderType orderType) {
-        switch (orderType) {
-            case HOTEL:
-                return new HotelPaymentService();
-            case TICKETS:
-                return new TicketsPaymentService();
-            case VISA:
-                return new VisaPaymentService();
-            default:
-                throw new IllegalArgumentException("Unsupported order business type: " + orderType);
         }
+
     }
+
+    private void payPrdOfHotelVerify(OrderInfo orderInfo) {
+        // 各种酒店订单支付前的检查 ...... 候选人不用关系内部逻辑
+    }
+    private void payAfterOfVisaBusiness(long payId, OrderInfo orderInfo) {
+        // 各种签证订单支付后的逻辑 ...... 候选人不用关系内部逻辑
+    }
+
 }
 // -------------------- 方便候选人本地阅读代码，↓↓↓↓↓↓↓不需要动 --------------------
 
