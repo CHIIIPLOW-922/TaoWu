@@ -63,13 +63,14 @@ class Customer implements Runnable {
 
 public class BankSimulation {
     public static void main(String[] args) {
-        int windowCount = 5; // Number of bank windows
-        int maxCustomersPerWindow = 3; // Maximum customers that can be served simultaneously per window
+        testBankSimulation(3,7,90);
+    }
+    public static void testBankSimulation(int windowCount, int maxCustomersPerWindow, int totalCustomers) {
+        System.out.println("Testing Bank Simulation with " + windowCount + " windows and max " + maxCustomersPerWindow + " customers per window.");
         Bank bank = new Bank(windowCount, maxCustomersPerWindow);
 
         ExecutorService executor = Executors.newFixedThreadPool(windowCount);
 
-        int totalCustomers = 10; // Total number of customers
         for (int i = 0; i < totalCustomers; i++) {
             executor.execute(new Customer(bank, i));
         }
@@ -80,5 +81,6 @@ public class BankSimulation {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        System.out.println("Testing completed.\n");
     }
 }
